@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xamarinapp="clr-namespace:XamarinApp"
+             x:Class="XamarinApp.MainPage"
+             x:Name="C">
+    <ContentPage.BindingContext>
+        <xamarinapp:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+        <Entry Text="{Binding InputString}" FontSize="Large" Placeholder="Enter" BackgroundColor="Aqua"/>
+        <Label Text="{Binding Num}" HorizontalOptions="Center" BackgroundColor="Aqua" FontSize="Large"/>
+        <Stepper Increment="1" Value="{Binding Num}" HorizontalOptions="Center" />
+
+        <CollectionView SelectionMode="Single" ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedCategories}" HeightRequest="40" ItemsLayout="HorizontalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="xamarinapp:Categories">
+                    <BoxView Color="{Binding MyColor}" WidthRequest="80" HeightRequest="40" CornerRadius="20"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Add" Command="{Binding MyCommand}"/>
+
+        <CollectionView ItemsSource="{Binding MyCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="xamarinapp:Model">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                        <BoxView Color="{Binding ItemColour}" WidthRequest="60" CornerRadius="20"/>
+                        <!--<Picker ItemsSource="{Binding CategoriesList}"/>-->
+                        <Label Text="{Binding SomeString}" WidthRequest="250" FontSize="Large"/>
+                        <Label Text="{Binding Number}" WidthRequest="40" FontSize="Large"/>
+                        <CheckBox IsChecked="{Binding IsDone}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Delete" Command="{Binding DelCommand}"/>
+    </StackLayout>
+</ContentPage>
