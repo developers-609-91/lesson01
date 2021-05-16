@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.MainPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="CheckButton" TargetType="Button">
+            <Setter Property="HeightRequest" Value="30"/>
+            <Setter Property="WidthRequest" Value="40"/>
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightGray">
+            <CollectionView
+                ItemsSource="{Binding AllTasks}"
+                x:Name="Collection"
+                Margin="10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox
+                                    IsChecked="{Binding Done}"
+                                    Scale="1.5"
+                                    Margin="10"
+                                    Color="{Binding COLOR}">
+                            </CheckBox>
+                            <Label Text="{Binding Description}"
+                                        FontSize="20"
+                                        WidthRequest="250"
+                                        TextDecorations="{Binding TextDecoration}"
+                                        TextColor="Black"
+                                        BackgroundColor="{Binding COLOR}"
+                                        Margin="5"
+                                        Padding="5"
+                                        VerticalTextAlignment="Center"/>
+
+                            <Label
+                                WidthRequest="50"
+                                FontSize="20"
+                                Text="{Binding Num}"
+                                TextColor="Black"
+                                TextDecorations="{Binding TextDecoration}"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"/>
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+            <Grid Margin="10, 10, 10, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Orientation="Horizontal" 
+                             Grid.Row="1" 
+                             Grid.ColumnSpan="4"
+                             Margin="30, 0, 0, 10">
+                    <Button 
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetRed}"
+                        IsEnabled="True"
+                        x:Name="button0"
+                        Clicked="Button_Clicked"
+                        Background="Red">
+                    </Button>
+
+                    <Button 
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetBlue}"
+                        IsEnabled="True"
+                        x:Name="button1"
+                        Clicked="Button_Clicked"
+                        Background="Blue">
+                    </Button>
+
+
+                    <Button
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetGreen}"
+                        IsEnabled="True"
+                        x:Name="button2"
+                        Clicked="Button_Clicked"
+                        Background="Green">
+                    </Button>
+
+                    <Button
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetPurple}"
+                        IsEnabled="True"
+                        x:Name="button3"
+                        Clicked="Button_Clicked"
+                        Background="Purple">
+                    </Button>
+
+                    <Button
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetPink}"
+                        IsEnabled="True"
+                        x:Name="button4"
+                        Clicked="Button_Clicked"
+                        Background="Pink">
+                    </Button>
+
+                    <Button
+                        Style="{StaticResource CheckButton}"
+                        Command="{Binding SetOrange}"
+                        IsEnabled="True"
+                        x:Name="button5"
+                        Clicked="Button_Clicked"
+                        Background="Orange">
+                    </Button>
+                </StackLayout>
+
+                <Button Text="Complete"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Background="SlateGray"                                                                                                                      
+                    Command="{Binding DeleteChoosed}">
+                </Button>
+
+                <Button Text="Delete All"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Background="Red"                                                                                                                      
+                    Command="{Binding DeleteAll}">
+                </Button>
+
+
+
+            </Grid>
+            <StackLayout Orientation="Horizontal" 
+                             Grid.Row="1" 
+                             Grid.ColumnSpan="4"
+                             Margin="0, 0, 0, 10">
+                <Entry
+                        x:Name="MainEntry"
+                        Text="{Binding Description}"
+                        Placeholder="Что купить?"
+                        HorizontalTextAlignment="Center"
+                        PlaceholderColor="gray"
+                        WidthRequest="300">
+                </Entry>
+                <Entry
+                        x:Name="NumEntry"
+                        Text="{Binding Num}"
+                        Placeholder="0"
+                        HorizontalTextAlignment="Center"
+                        PlaceholderColor="gray"
+                        WidthRequest="75">
+                </Entry>
+            </StackLayout>
+            <Button
+                    Command="{Binding AddTask}"
+                    x:Name="AddBtn"
+                    Grid.Row="0"
+                    BorderWidth="1"
+                    Grid.Column="3"
+                    Grid.RowSpan="1"
+                    Text="+"
+                    TextColor="Black"
+                    FontSize="28"
+                    BorderRadius="60"
+                    Background="Green"
+                    Margin="0">
+            </Button>
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
